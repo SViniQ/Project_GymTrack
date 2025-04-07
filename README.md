@@ -16,7 +16,6 @@ N/A
 n/a
 
 <div align="center">
-  Espero que este guia tenha sido útil e que você aproveite ao máximo o projeto. 🎉😄
 </div>
 
 ## Links Úteis:
