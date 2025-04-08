@@ -79,6 +79,18 @@
             System.out.println("Telefone: " + telefone);
             System.out.println("Sexo: " + sexo);
         }
+
+        @Override
+        public String toString() {
+            return
+                    "Nome: " + nome + "\n" +
+                    "Idade: " + idade + "\n" +
+                    "Email: " + email + "\n" +
+                    "CPF: " + cpf + "\n" +
+                    "Telefone: " + telefone + "\n" +
+                    "Sexo: " + sexo + "\n"
+                    ;
+        }
     }
 
 
