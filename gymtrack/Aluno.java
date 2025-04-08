@@ -7,7 +7,7 @@ public class Aluno extends Pessoa{
     private double percentual_gordura;
 
 
-    public Aluno(String nome, int idade, String email, String cpf, String telefone, char sexo, double peso, double altura,  double percentual_gordura) {
+    public Aluno(String nome, int idade, String email, String cpf, String telefone, char sexo, double peso, double altura, double percentual_gordura) {
         super(nome, idade, email, cpf, telefone, sexo);
         this.peso = peso;
         this.altura = altura;
@@ -46,16 +46,26 @@ public class Aluno extends Pessoa{
         this.percentual_gordura = percentual_gordura;
     }
 
-    private  double calculaIMC() {
+    private double calculaIMC() {
         imc = peso / (altura * altura);
         return imc;
     }
 
     public void showInfo(){
         super.showInfo();
-        System.out.println("Altura: " + peso);
+        System.out.println("Peso: " + peso);
         System.out.println("Altura: " + altura);
         System.out.println("IMC: " + calculaIMC());
         System.out.println("Percentual de gordura: " + percentual_gordura + "%");
+    }
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "Peso: " + peso + "\n" +
+                "Altura: " + altura + "\n" +
+                "IMC: " + calculaIMC()+ "\n" +
+                "Percentual de gordura: " + percentual_gordura + "\n"
+                ;
     }
 }

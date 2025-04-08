@@ -43,4 +43,12 @@ public class Professor extends Pessoa {
         System.out.println("Mensalidade paga: " + mensalidade_paga);
     }
 
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Quantidade de alunos: " + qtd_alunos + "\n" +
+                "Salario: " + salario +  "\n" +
+                "Mensalidade foi paga? " + (mensalidade_paga  ? "Sim" : "Nao") + "\n"
+                ;
+    }
 }
