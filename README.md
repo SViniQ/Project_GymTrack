@@ -31,3 +31,39 @@ n/a
 - Arthur F. Campos - [Link do LinkedIn](https://www.linkedin.com/in/arthur-campos-a120472b7/)
 - Dereck A. do E. Portela - [Link do LinkedIn](https://www.linkedin.com/in/dereck-portela-36682675/)
 - Paulo R. de B. Mendes - [Link do LinkedIn](https://www.linkedin.com/in/paulo-mendes)
+
+## Diagrama de Classes
+
+```mermaid
+classDiagram
+    class User {
+        +String username
+        +String email
+        +String password
+    }
+    class Profile {
+        +int age
+        +float weight
+        +float height
+        +String phone_number
+    }
+    class WorkoutPlan {
+        +String name
+        +String description
+    }
+    class Exercise {
+        +String name
+        +String muscle_group
+        +int sets
+        +int reps
+    }
+    class Attendance {
+        +Date date
+        +boolean present
+    }
+
+    User --> Profile : has
+    User --> WorkoutPlan : assigned
+    WorkoutPlan --> Exercise : includes
+    User --> Attendance : logs
+  ```
