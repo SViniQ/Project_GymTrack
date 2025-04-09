@@ -30,4 +30,6 @@ n/a
 - Guilherme W. Nogueira - [Link do LinkedIn](https://www.linkedin.com/in/guilherme-wolf/)
 - Arthur F. Campos - [Link do LinkedIn](https://www.linkedin.com/in/arthur-campos-a120472b7/)
 - Dereck A. do E. Portela - [Link do LinkedIn](https://www.linkedin.com/in/dereck-portela-36682675/)
-- Paulo R. de B. Mendes - [Link do LinkedIn](https://www.linkedin.com/in/paulo-mendes)
+- Paulo R. de B. Mendes - [Link do LinkedIn](https://www.linkedin.com/in/paulo-mendes/)
+- Pierre Costa S. de O. N. - [Link do LinkedIn](https://www.linkedin.com/in/pierre-costa-b1b51314a/)
+- Ylson Santos - [Link do LinkedIn](https://www.linkedin.com/in/pierre-costa-b1b51314a/)
