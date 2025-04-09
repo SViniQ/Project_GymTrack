@@ -1,5 +1,7 @@
 package gymtrack;
 
+import repositorio.Repositorio;
+
 import java.util.Scanner;
 
 
