@@ -1,4 +1,7 @@
-package gymtrack;
+package repositorio;
+import gymtrack.Aluno;
+import gymtrack.Professor;
+
 import java.util.ArrayList;
 import java.util.List;
 
