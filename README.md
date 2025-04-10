@@ -7,24 +7,34 @@
   GymTrack é uma plataforma inteligente de gestão para academias, oferecendo controle automatizado de fluxo de alunos, monitoramento de progresso físico e otimização da experiência dos usuários em tempo real!
 </div>
 
-## 🛠️ Pré-requisitos
+## ✅ Histórias de Usuário
+As histórias foram elaboradas no Jira e podem ser acessadas neste link:
+<img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" alt="Jira" width="20"/> [Jira Board](https://coderfullstackvinicius.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?atlOrigin=eyJpIjoiYjI0Yzc5YWNmNTJiNGIzYjhlYjg2YzJjMGEyZDdlNjYiLCJwIjoiaiJ9)
 
-N/A
+## 🧪 Protótipo Lo-Fi
+Protótipo de baixa fidelidade criado no Figma: 
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" width="20"/> [Figma Design](https://www.figma.com/design/P3UNY8tWPJj7FW43XrU9ZE/Untitled?node-id=0-1&t=b3ow5hTyewWG7oIH-1)
 
-## 🚀 Passo a passo interativo
+## 🧠 Diagrama de Classes
+![Print do Diagrama](./images/diagrama_de_classes.jpg)
 
-n/a
+## 📽️ Screencast do Sistema em Execução
+🔗 [YouTube – Demonstração do Sistema](https://youtu.be/kz6IvJxbEO0)
 
-<div align="center">
-</div>
+## 🐞 Issue Tracker
+Print da aba de issues do GitHub:  
+![Print das Issues](./images/issue_bug_tracker.png)
 
-## Links Úteis:
+🔗 [Aba de Issues no GitHub](https://github.com/SViniQ/Project_GymTrack/issues)
 
-1. <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" width="20"/> [Figma Design](https://www.figma.com/design/P3UNY8tWPJj7FW43XrU9ZE/Untitled?node-id=0-1&t=b3ow5hTyewWG7oIH-1)
+## 🔧 Tecnologias Utilizadas
 
-2. <img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" alt="Jira" width="20"/> [Jira Board](https://coderfullstackvinicius.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?atlOrigin=eyJpIjoiYjI0Yzc5YWNmNTJiNGIzYjhlYjg2YzJjMGEyZDdlNjYiLCJwIjoiaiJ9)
+- Java
+- Figma (Protótipo)
+- GitHub (Controle de versão e issues)
+- Jira (Gestão de histórias)
 
-## Integrantes do Projeto:
+## 👥 Equipe
 
 - Vinícius S. Queiroz - [Link do LinkedIn](https://www.linkedin.com/in/viníciussilvaqueiroz/)
 - Guilherme W. Nogueira - [Link do LinkedIn](https://www.linkedin.com/in/guilherme-wolf/)
@@ -32,4 +42,4 @@ n/a
 - Dereck A. do E. Portela - [Link do LinkedIn](https://www.linkedin.com/in/dereck-portela-36682675/)
 - Paulo R. de B. Mendes - [Link do LinkedIn](https://www.linkedin.com/in/paulo-mendes/)
 - Pierre Costa S. de O. N. - [Link do LinkedIn](https://www.linkedin.com/in/pierre-costa-b1b51314a/)
-- Ylson Santos - [Link do LinkedIn](https://www.linkedin.com/in/pierre-costa-b1b51314a/)
+- Ylson Santos Q. F. - [Link do LinkedIn](https://www.linkedin.com/in/ylson-santos/)
