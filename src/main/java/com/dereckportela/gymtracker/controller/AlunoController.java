@@ -1,5 +1,6 @@
 package com.dereckportela.gymtracker.controller;
 import com.dereckportela.gymtracker.dto.AlunoDtoResponse;
+import com.dereckportela.gymtracker.exception.RecursoNaoEncontradoException;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.dto.AlunoDto;
 import com.dereckportela.gymtracker.model.Aluno;
@@ -32,7 +33,7 @@ public class AlunoController {
     @PostMapping
     public ResponseEntity<Aluno> cadastrar(@RequestBody AlunoDto dto) {
         Instrutor instrutor = instrutorRepository.findById(dto.getInstrutorId())
-                .orElseThrow(() -> new RuntimeException("Instrutor nao encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
 
         Aluno aluno = new Aluno();
         aluno.setNome(dto.getNome());
@@ -48,6 +49,16 @@ public class AlunoController {
         Aluno saved = alunoRepository.save(aluno);
 
         return ResponseEntity.ok(saved);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Aluno> excluir(@PathVariable Long id) {
+        if(!alunoRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+        alunoRepository.deleteById(id);
+
+    return ResponseEntity.ok().build();
     }
 
 
