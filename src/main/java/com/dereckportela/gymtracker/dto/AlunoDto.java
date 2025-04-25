@@ -7,6 +7,8 @@ import lombok.Setter;
 @Getter @Setter
 public class AlunoDto {
     @NonNull
+    private String matricula;
+    @NonNull
     private String nome;
     @NonNull
     private String email;
