@@ -25,6 +25,8 @@ public class Aluno extends Pessoa{
     @JoinColumn(name = "instrutor_id")
         private Instrutor instrutor;
 
-    private void calculaIMC(){}
+    private void calculaIMC(){
+        System.out.println("asdasd");
+    }
 
 }
