@@ -1,5 +1,6 @@
 package com.dereckportela.gymtracker.controller;
 import com.dereckportela.gymtracker.dto.InstrutorDto;
+import com.dereckportela.gymtracker.dto.InstrutorDtoResponse;
 import com.dereckportela.gymtracker.exception.RecursoNaoEncontradoException;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/instrutor")
@@ -18,12 +20,12 @@ public class InstrutorController {
     }
 
     @GetMapping
-    public List<Instrutor> listar(){
-
-        return instrutorRepository.findAll();
+    public List<InstrutorDtoResponse> listar(){
+        List<Instrutor> instrutores = instrutorRepository.findAll();
+        return instrutores.stream().map(instrutor -> new InstrutorDtoResponse(instrutor.getId(), instrutor.getNome(), instrutor.getIdade(), instrutor.getMatricula(), instrutor.getEmail(), instrutor.getEspecialidade(), instrutor.getSexo(), instrutor.getSalario(), instrutor.getAlunos())).toList();
     }
 
-    @PostMapping                                                                                                                            
+    @PostMapping
     public Instrutor salvar(@RequestBody InstrutorDto dto) {
         Instrutor instrutor = new Instrutor();
         instrutor.setNome(dto.getNome());
