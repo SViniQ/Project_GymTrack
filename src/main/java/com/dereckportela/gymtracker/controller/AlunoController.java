@@ -27,7 +27,7 @@ public class AlunoController {
     @GetMapping
     public List<AlunoDtoResponse> listar(){
         List<Aluno> alunos = alunoRepository.findAll();
-        return alunos.stream().map(aluno -> new AlunoDtoResponse(aluno.getNome(), aluno.getEmail(), aluno.getInstrutor() != null ? aluno.getInstrutor().getNome() : "Sem Instrutor")).toList();
+        return alunos.stream().map(aluno -> new AlunoDtoResponse(aluno.getId(), aluno.getMatricula(), aluno.getNome(), aluno.getEmail(), aluno.getPeso(), aluno.getAltura(), aluno.getObjetivo(), aluno.getInstrutor() != null ? aluno.getInstrutor().getNome() : "Sem Instrutor")).toList();
 
     }
     @PostMapping
@@ -36,6 +36,7 @@ public class AlunoController {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
 
         Aluno aluno = new Aluno();
+        aluno.setMatricula(dto.getMatricula());
         aluno.setNome(dto.getNome());
         aluno.setEmail(dto.getEmail());
         aluno.setAltura(dto.getAltura());
@@ -49,6 +50,30 @@ public class AlunoController {
         Aluno saved = alunoRepository.save(aluno);
 
         return ResponseEntity.ok(saved);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Aluno> atualizarAluno(@PathVariable Long id, @RequestBody AlunoDto dto) {
+        Aluno aluno = alunoRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Aluno nao encontrado"));
+        Instrutor instrutor = instrutorRepository.findById(dto.getInstrutorId())
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
+
+        aluno.setNome(dto.getNome());
+        aluno.setMatricula(dto.getMatricula());
+        aluno.setEmail(dto.getEmail());
+        aluno.setAltura(dto.getAltura());
+        aluno.setPeso(dto.getPeso());
+        aluno.setCpf(dto.getCpf());
+        aluno.setObjetivo(dto.getObjetivo());
+        aluno.setIdade(dto.getIdade());
+        aluno.setSexo(dto.getSexo());
+        aluno.setTelefone(dto.getTelefone());
+        aluno.setInstrutor(instrutor);
+
+        alunoRepository.save(aluno);
+
+        return ResponseEntity.ok(aluno);
     }
 
     @DeleteMapping("/{id}")
