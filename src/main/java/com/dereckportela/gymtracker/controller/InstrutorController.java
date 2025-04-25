@@ -1,5 +1,6 @@
 package com.dereckportela.gymtracker.controller;
 import com.dereckportela.gymtracker.dto.InstrutorDto;
+import com.dereckportela.gymtracker.exception.RecursoNaoEncontradoException;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class InstrutorController {
     public Instrutor salvar(@RequestBody InstrutorDto dto) {
         Instrutor instrutor = new Instrutor();
         instrutor.setNome(dto.getNome());
+        instrutor.setMatricula(dto.getMatricula());
         instrutor.setEmail(dto.getEmail());
         instrutor.setTelefone(dto.getTelefone());
         instrutor.setCpf(dto.getCpf());
@@ -34,6 +36,27 @@ public class InstrutorController {
         instrutor.setEspecialidade(dto.getEspecialidade());
 
         return instrutorRepository.save(instrutor);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Instrutor> atualizarInstrutor(@PathVariable Long id, @RequestBody InstrutorDto dto) {
+        Instrutor instrutor = instrutorRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
+
+        instrutor.setNome(dto.getNome());
+        instrutor.setMatricula(dto.getMatricula());
+        instrutor.setIdade(dto.getIdade());
+        instrutor.setEmail(dto.getEmail());
+        instrutor.setTelefone(dto.getTelefone());
+        instrutor.setCpf(dto.getCpf());
+        instrutor.setSexo(dto.getSexo());
+        instrutor.setSalario(dto.getSalario());
+        instrutor.setEspecialidade(dto.getEspecialidade());
+
+        instrutorRepository.save(instrutor);
+
+        return ResponseEntity.ok(instrutor);
+
     }
 
     @DeleteMapping("/{id}")

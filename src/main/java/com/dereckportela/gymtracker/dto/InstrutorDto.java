@@ -8,11 +8,12 @@ import lombok.Setter;
 @Setter
 public class InstrutorDto {
   //  @NonNull
+    private  String matricula;
     private String nome;
     private Integer idade;
     private String especialidade;
    // @NonNull
-    private Double salario;
+    private double salario;
    // @NonNull
     private String email;
    // @NonNull
