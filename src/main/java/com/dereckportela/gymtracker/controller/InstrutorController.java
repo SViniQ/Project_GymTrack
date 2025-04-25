@@ -35,4 +35,17 @@ public class InstrutorController {
 
         return instrutorRepository.save(instrutor);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Instrutor> excluir(@PathVariable Long id) {
+        if(!instrutorRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+        Instrutor instrutor = instrutorRepository.findById(id).orElseThrow();
+        if(!instrutor.getAlunos().isEmpty()){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        }
+        instrutorRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }
