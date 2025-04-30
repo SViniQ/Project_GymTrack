@@ -3,7 +3,7 @@ import com.dereckportela.gymtracker.dto.InstrutorDto;
 import com.dereckportela.gymtracker.dto.InstrutorDtoResponse;
 import com.dereckportela.gymtracker.exception.RecursoNaoEncontradoException;
 import com.dereckportela.gymtracker.model.Instrutor;
-import com.dereckportela.gymtracker.repository.InstrutorRepository;
+import com.dereckportela.gymtracker.service.InstructorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,63 +14,59 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/instrutor")
 public class InstrutorController {
-    private final InstrutorRepository instrutorRepository;
-    public InstrutorController(InstrutorRepository instrutorRepository) {
-        this.instrutorRepository = instrutorRepository;
+    private final InstructorService instructorService;
+    public InstrutorController(InstructorService instructorService) {
+        this.instructorService = instructorService;
     }
 
     @GetMapping
     public List<InstrutorDtoResponse> listar(){
-        List<Instrutor> instrutores = instrutorRepository.findAll();
-        return instrutores.stream().map(instrutor -> new InstrutorDtoResponse(instrutor.getId(), instrutor.getNome(), instrutor.getIdade(), instrutor.getMatricula(), instrutor.getEmail(), instrutor.getEspecialidade(), instrutor.getSexo(), instrutor.getSalario(), instrutor.getAlunos())).toList();
+       return instructorService.listar();
     }
 
     @PostMapping
-    public Instrutor salvar(@RequestBody InstrutorDto dto) {
-        Instrutor instrutor = new Instrutor();
-        instrutor.setNome(dto.getNome());
-        instrutor.setMatricula(dto.getMatricula());
-        instrutor.setEmail(dto.getEmail());
-        instrutor.setTelefone(dto.getTelefone());
-        instrutor.setCpf(dto.getCpf());
-        instrutor.setSexo(dto.getSexo());
-        instrutor.setSalario(dto.getSalario());
-        instrutor.setEspecialidade(dto.getEspecialidade());
-
-        return instrutorRepository.save(instrutor);
+    public ResponseEntity<InstrutorDtoResponse> salvar(@RequestBody InstrutorDto dto) {
+        Instrutor instrutor = instructorService.salvar(dto);
+        InstrutorDtoResponse response = new InstrutorDtoResponse(
+                instrutor.getId(),
+                instrutor.getNome(),
+                instrutor.getIdade(),
+                instrutor.getMatricula(),
+                instrutor.getEmail(),
+                instrutor.getEspecialidade(),
+                instrutor.getSexo(),
+                instrutor.getSalario(),
+                instrutor.getAlunos()
+        );
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Instrutor> atualizarInstrutor(@PathVariable Long id, @RequestBody InstrutorDto dto) {
-        Instrutor instrutor = instrutorRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
+    public ResponseEntity<InstrutorDtoResponse> atualizarInstrutor(@PathVariable Long id, @RequestBody InstrutorDto dto) {
+       Instrutor instrutor = instructorService.atualizar(id, dto);
+       InstrutorDtoResponse response = new InstrutorDtoResponse(
+               instrutor.getId(),
+               instrutor.getNome(),
+               instrutor.getIdade(),
+               instrutor.getMatricula(),
+               instrutor.getEmail(),
+               instrutor.getEspecialidade(),
+               instrutor.getSexo(),
+               instrutor.getSalario(),
+               instrutor.getAlunos()
+       );
 
-        instrutor.setNome(dto.getNome());
-        instrutor.setMatricula(dto.getMatricula());
-        instrutor.setIdade(dto.getIdade());
-        instrutor.setEmail(dto.getEmail());
-        instrutor.setTelefone(dto.getTelefone());
-        instrutor.setCpf(dto.getCpf());
-        instrutor.setSexo(dto.getSexo());
-        instrutor.setSalario(dto.getSalario());
-        instrutor.setEspecialidade(dto.getEspecialidade());
-
-        instrutorRepository.save(instrutor);
-
-        return ResponseEntity.ok(instrutor);
+        return ResponseEntity.ok(response);
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Instrutor> excluir(@PathVariable Long id) {
-        if(!instrutorRepository.existsById(id)){
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<String> excluir(@PathVariable Long id) {
+        try{
+            instructorService.remover(id);
+            return ResponseEntity.ok().build();
+        }catch(IllegalStateException e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
-        Instrutor instrutor = instrutorRepository.findById(id).orElseThrow();
-        if(!instrutor.getAlunos().isEmpty()){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
-        }
-        instrutorRepository.deleteById(id);
-        return ResponseEntity.ok().build();
     }
 }
