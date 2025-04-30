@@ -25,5 +25,6 @@ public class AlunoDto {
     private double altura;
     private int idade;
     private String objetivo;
+    @NonNull
     private Long instrutorId;
 }
