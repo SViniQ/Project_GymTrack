@@ -1,4 +1,4 @@
-package com.dereckportela.gymtracker.service;
+package com.dereckportela.gymtracker.unit.service;
 
 import com.dereckportela.gymtracker.dto.AlunoDto;
 import com.dereckportela.gymtracker.dto.AlunoDtoResponse;
@@ -8,6 +8,7 @@ import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.AlunoRepository;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
 
+import com.dereckportela.gymtracker.unit.AlunoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
