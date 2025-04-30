@@ -1,4 +1,5 @@
 package com.dereckportela.gymtracker.controller;
+
 import com.dereckportela.gymtracker.dto.AlunoDtoResponse;
 import com.dereckportela.gymtracker.exception.RecursoNaoEncontradoException;
 import com.dereckportela.gymtracker.model.Instrutor;
@@ -6,10 +7,14 @@ import com.dereckportela.gymtracker.dto.AlunoDto;
 import com.dereckportela.gymtracker.model.Aluno;
 import com.dereckportela.gymtracker.repository.AlunoRepository;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
+import com.dereckportela.gymtracker.service.AlunoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/alunos")
@@ -17,73 +22,85 @@ public class AlunoController {
 
     private final InstrutorRepository instrutorRepository;
     private final AlunoRepository alunoRepository;
+    private final AlunoService alunoService;
 
-    public AlunoController(InstrutorRepository instrutorRepository, AlunoRepository alunoRepository) {
-
+    public AlunoController(AlunoService alunoService, InstrutorRepository instrutorRepository, AlunoRepository alunoRepository) {
+        this.alunoService = alunoService;
         this.instrutorRepository = instrutorRepository;
         this.alunoRepository = alunoRepository;
     }
 
     @GetMapping
-    public List<AlunoDtoResponse> listar(){
-        List<Aluno> alunos = alunoRepository.findAll();
-        return alunos.stream().map(aluno -> new AlunoDtoResponse(aluno.getId(), aluno.getMatricula(), aluno.getNome(), aluno.getEmail(), aluno.getPeso(), aluno.getAltura(), aluno.getObjetivo(), aluno.getInstrutor() != null ? aluno.getInstrutor().getNome() : "Sem Instrutor")).toList();
-
+    public List<AlunoDtoResponse> listar() {
+        return alunoService.listar();
     }
+
     @PostMapping
-    public ResponseEntity<Aluno> cadastrar(@RequestBody AlunoDto dto) {
-        Instrutor instrutor = instrutorRepository.findById(dto.getInstrutorId())
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
+    public ResponseEntity<?> cadastrar(@RequestBody AlunoDto dto) {
+        try {
+            Aluno aluno = alunoService.cadastrar(dto);
+            AlunoDtoResponse reponse = new AlunoDtoResponse(
+                    aluno.getId(),
+                    aluno.getMatricula(),
+                    aluno.getNome(),
+                    aluno.getIdade(),
+                    aluno.getEmail(),
+                    aluno.getCpf(),
+                    aluno.getTelefone(),
+                    aluno.getSexo(),
+                    aluno.getPeso(),
+                    aluno.getAltura(),
+                    aluno.getObjetivo(),
+                    aluno.getInstrutor().getNome()
+            );
+            return ResponseEntity.status(HttpStatus.CREATED).body(reponse);
+        } catch (RecursoNaoEncontradoException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    Map.of("mensagem", e.getMessage())
+            );
+        }
 
-        Aluno aluno = new Aluno();
-        aluno.setMatricula(dto.getMatricula());
-        aluno.setNome(dto.getNome());
-        aluno.setEmail(dto.getEmail());
-        aluno.setAltura(dto.getAltura());
-        aluno.setPeso(dto.getPeso());
-        aluno.setCpf(dto.getCpf());
-        aluno.setObjetivo(dto.getObjetivo());
-        aluno.setIdade(dto.getIdade());
-        aluno.setSexo(dto.getSexo());
-        aluno.setTelefone(dto.getTelefone());
-        aluno.setInstrutor(instrutor);
-        Aluno saved = alunoRepository.save(aluno);
 
-        return ResponseEntity.ok(saved);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Aluno> atualizarAluno(@PathVariable Long id, @RequestBody AlunoDto dto) {
-        Aluno aluno = alunoRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Aluno nao encontrado"));
-        Instrutor instrutor = instrutorRepository.findById(dto.getInstrutorId())
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
+    public ResponseEntity<?> atualizarAluno(@PathVariable Long id, @RequestBody AlunoDto dto) {
+        try {
+            Aluno aluno = alunoService.atualizar(id, dto);
+            AlunoDtoResponse reponse = new AlunoDtoResponse(
+                    aluno.getId(),
+                    aluno.getMatricula(),
+                    aluno.getNome(),
+                    aluno.getIdade(),
+                    aluno.getEmail(),
+                    aluno.getCpf(),
+                    aluno.getTelefone(),
+                    aluno.getSexo(),
+                    aluno.getPeso(),
+                    aluno.getAltura(),
+                    aluno.getObjetivo(),
+                    aluno.getInstrutor().getNome()
+            );
+            return ResponseEntity.status(HttpStatus.CREATED).body(reponse);
 
-        aluno.setNome(dto.getNome());
-        aluno.setMatricula(dto.getMatricula());
-        aluno.setEmail(dto.getEmail());
-        aluno.setAltura(dto.getAltura());
-        aluno.setPeso(dto.getPeso());
-        aluno.setCpf(dto.getCpf());
-        aluno.setObjetivo(dto.getObjetivo());
-        aluno.setIdade(dto.getIdade());
-        aluno.setSexo(dto.getSexo());
-        aluno.setTelefone(dto.getTelefone());
-        aluno.setInstrutor(instrutor);
+        } catch (RecursoNaoEncontradoException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    Map.of("mensagem", e.getMessage())
+            );
 
-        alunoRepository.save(aluno);
+        }
 
-        return ResponseEntity.ok(aluno);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Aluno> excluir(@PathVariable Long id) {
-        if(!alunoRepository.existsById(id)){
-            return ResponseEntity.notFound().build();
-        }
-        alunoRepository.deleteById(id);
+    public ResponseEntity<String> excluir(@PathVariable Long id) {
+        try {
+            alunoService.remover(id);
+            return ResponseEntity.ok().build();
+        } catch (RecursoNaoEncontradoException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 
-    return ResponseEntity.ok().build();
+        }
     }
 
 
