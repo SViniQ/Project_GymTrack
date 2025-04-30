@@ -2,14 +2,12 @@ package com.dereckportela.gymtracker.controller;
 
 import com.dereckportela.gymtracker.dto.AlunoDtoResponse;
 import com.dereckportela.gymtracker.exception.RecursoNaoEncontradoException;
-import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.dto.AlunoDto;
 import com.dereckportela.gymtracker.model.Aluno;
 import com.dereckportela.gymtracker.repository.AlunoRepository;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
-import com.dereckportela.gymtracker.service.AlunoService;
+import com.dereckportela.gymtracker.unit.AlunoService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
