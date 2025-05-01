@@ -18,8 +18,8 @@ Protótipo de baixa fidelidade criado no Figma:
 ## 🧠 Diagrama de Classes
 ![Print do Diagrama](./images/diagrama_de_classes.jpg)
 
-## 📽️ Screencast do Sistema em Execução
-🔗 [YouTube – Demonstração do Sistema](https://youtu.be/kz6IvJxbEO0)
+## 📽️ Screencast do Sistema em Execução e Atualizado
+🔗 [YouTube – Demonstração do Sistema](https://youtu.be/rTJzWuBiSj0)
 
 ## 🐞 Issue Tracker
 Print da aba de issues do GitHub:  
