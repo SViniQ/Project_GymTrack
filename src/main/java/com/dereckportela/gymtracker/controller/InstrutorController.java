@@ -1,4 +1,5 @@
 package com.dereckportela.gymtracker.controller;
+
 import com.dereckportela.gymtracker.dto.InstrutorDto;
 import com.dereckportela.gymtracker.dto.InstrutorDtoResponse;
 import com.dereckportela.gymtracker.model.Instrutor;
@@ -13,13 +14,14 @@ import java.util.List;
 @RequestMapping("/instrutor")
 public class InstrutorController {
     private final InstructorService instructorService;
+
     public InstrutorController(InstructorService instructorService) {
         this.instructorService = instructorService;
     }
 
     @GetMapping
-    public List<InstrutorDtoResponse> listar(){
-       return instructorService.listar();
+    public List<InstrutorDtoResponse> listar() {
+        return instructorService.listar();
     }
 
     @PostMapping
@@ -34,25 +36,24 @@ public class InstrutorController {
                 instrutor.getEspecialidade(),
                 instrutor.getSexo(),
                 instrutor.getSalario(),
-                instrutor.getAlunos()
-        );
+                instrutor.getAlunos());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InstrutorDtoResponse> atualizarInstrutor(@PathVariable Long id, @RequestBody InstrutorDto dto) {
-       Instrutor instrutor = instructorService.atualizar(id, dto);
-       InstrutorDtoResponse response = new InstrutorDtoResponse(
-               instrutor.getId(),
-               instrutor.getNome(),
-               instrutor.getIdade(),
-               instrutor.getMatricula(),
-               instrutor.getEmail(),
-               instrutor.getEspecialidade(),
-               instrutor.getSexo(),
-               instrutor.getSalario(),
-               instrutor.getAlunos()
-       );
+    public ResponseEntity<InstrutorDtoResponse> atualizarInstrutor(@PathVariable Long id,
+            @RequestBody InstrutorDto dto) {
+        Instrutor instrutor = instructorService.atualizar(id, dto);
+        InstrutorDtoResponse response = new InstrutorDtoResponse(
+                instrutor.getId(),
+                instrutor.getNome(),
+                instrutor.getIdade(),
+                instrutor.getMatricula(),
+                instrutor.getEmail(),
+                instrutor.getEspecialidade(),
+                instrutor.getSexo(),
+                instrutor.getSalario(),
+                instrutor.getAlunos());
 
         return ResponseEntity.ok(response);
 
@@ -60,10 +61,10 @@ public class InstrutorController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> excluir(@PathVariable Long id) {
-        try{
+        try {
             instructorService.remover(id);
             return ResponseEntity.ok().build();
-        }catch(IllegalStateException e){
+        } catch (IllegalStateException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }

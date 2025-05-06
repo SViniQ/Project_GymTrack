@@ -17,15 +17,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/alunos")
 public class AlunoController {
-
-    private final InstrutorRepository instrutorRepository;
-    private final AlunoRepository alunoRepository;
     private final AlunoService alunoService;
 
-    public AlunoController(AlunoService alunoService, InstrutorRepository instrutorRepository, AlunoRepository alunoRepository) {
+    public AlunoController(AlunoService alunoService) {
         this.alunoService = alunoService;
-        this.instrutorRepository = instrutorRepository;
-        this.alunoRepository = alunoRepository;
+        
     }
 
     @GetMapping
