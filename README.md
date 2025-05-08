@@ -11,15 +11,15 @@
 As histórias foram elaboradas no Jira e podem ser acessadas neste link:
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" alt="Jira" width="20"/> [Jira Board](https://coderfullstackvinicius.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?atlOrigin=eyJpIjoiYjI0Yzc5YWNmNTJiNGIzYjhlYjg2YzJjMGEyZDdlNjYiLCJwIjoiaiJ9)
 
+Abaixo, segue um Print de todas a histórias:
+![Histórias de Usuário](./images/print_historias_de_usuario.png)
+
 ## 🧪 Protótipo Lo-F
 Protótipo de baixa fidelidade criado no Figma: 
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" width="20"/> [Figma Design](https://www.figma.com/design/P3UNY8tWPJj7FW43XrU9ZE/Untitled?node-id=0-1&t=b3ow5hTyewWG7oIH-1)
 
 ## 🧠 Diagrama de Classe
 ![Diagrama de Classe](./images/diagrama_de_classes.jpg)
-
-## 📅 Histórias de Usuário
-![Histórias de Usuário](./images/print_historias_de_usuario)
 
 ## 📽️ Screencast do Sistema em Execução e Atualizad
 🔗 [YouTube – Demonstração do Sistema Atualizado e Testes Automatizados](https://www.youtube.com/watch?v=pdWdF295ZJI)
