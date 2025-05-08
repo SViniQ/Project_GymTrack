@@ -1,4 +1,4 @@
-<h1 align="center">GymTrac</h1>
+<h1 align="center">GymTrack</h1>
 
 <div align="center">
   <strong>🏋🏽 ⚙️ 🏃🏽</strong>
@@ -7,7 +7,7 @@
   GymTrack é uma plataforma inteligente de gestão para academias, oferecendo controle automatizado de fluxo de alunos, monitoramento de progresso físico e otimização da experiência dos usuários em tempo real!
 </div>
 
-## ✅ Histórias de Usuári
+## ✅ Histórias de Usuário
 As histórias foram elaboradas no Jira e podem ser acessadas neste link:
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" alt="Jira" width="20"/> [Jira Board](https://coderfullstackvinicius.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?atlOrigin=eyJpIjoiYjI0Yzc5YWNmNTJiNGIzYjhlYjg2YzJjMGEyZDdlNjYiLCJwIjoiaiJ9)
 
@@ -16,14 +16,17 @@ Protótipo de baixa fidelidade criado no Figma:
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" width="20"/> [Figma Design](https://www.figma.com/design/P3UNY8tWPJj7FW43XrU9ZE/Untitled?node-id=0-1&t=b3ow5hTyewWG7oIH-1)
 
 ## 🧠 Diagrama de Classe
-![Print do Diagrama](./images/diagrama_de_classes.jpg)
+![Diagrama de Classe](./images/diagrama_de_classes.jpg)
+
+## 📅 Histórias de Usuário
+![Histórias de Usuário](./images/print_historias_de_usuario)
 
 ## 📽️ Screencast do Sistema em Execução e Atualizad
-🔗 [YouTube – Demonstração do Sistema](https://youtu.be/rTJzWuBiSj0)
+🔗 [YouTube – Demonstração do Sistema Atualizado e Testes Automatizados](https://www.youtube.com/watch?v=pdWdF295ZJI)
 
-## 🐞 Issue Tracke
+## 🐞 Issue/Bug Tracker
 Print da aba de issues do GitHub:  
-![Print das Issues](./images/issue_bug_tracker.png)
+![Print das Issues](./images/print_issue_bug_tracker.png)
 
 🔗 [Aba de Issues no GitHub](https://github.com/SViniQ/Project_GymTrack/issues)
 
