@@ -26,7 +26,7 @@ Protótipo de baixa fidelidade criado no Figma:
 
 ## 🐞 Issue/Bug Tracker
 Print da aba de issues do GitHub:  
-![Print das Issues](./images/print_issue_bug_tracker.png)
+![Print das Issues](./images/issue_bug_tracker.jpg)
 
 🔗 [Aba de Issues no GitHub](https://github.com/SViniQ/Project_GymTrack/issues)
 
