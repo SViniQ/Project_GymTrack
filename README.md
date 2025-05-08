@@ -12,7 +12,7 @@ As histórias foram elaboradas no Jira e podem ser acessadas neste link:
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968875.png" alt="Jira" width="20"/> [Jira Board](https://coderfullstackvinicius.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?atlOrigin=eyJpIjoiYjI0Yzc5YWNmNTJiNGIzYjhlYjg2YzJjMGEyZDdlNjYiLCJwIjoiaiJ9)
 
 Abaixo, segue um Print de todas a histórias:
-![Histórias de Usuário](./images/print_historias_de_usuario.png)
+![Histórias de Usuário](./images/print_historias_de_usuario.jpg)
 
 ## 🧪 Protótipo Lo-F
 Protótipo de baixa fidelidade criado no Figma: 
