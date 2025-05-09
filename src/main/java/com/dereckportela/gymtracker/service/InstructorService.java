@@ -1,4 +1,4 @@
-package com.dereckportela.gymtracker.unit;
+package com.dereckportela.gymtracker.service;
 
 import com.dereckportela.gymtracker.dto.InstrutorDto;
 import com.dereckportela.gymtracker.dto.InstrutorDtoResponse;

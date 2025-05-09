@@ -15,10 +15,11 @@ public class AlunoDtoResponse {
     private String sexo;
     private double peso;
     private double altura;
+    private double imc;
     private String objetivo;
     private String nomeInstrutor;
 
-    public AlunoDtoResponse(Long id, String matricula, String nome, int idade, String email, String cpf, String telefone, String sexo, double peso, double altura, String objetivo, String nomeInstrutor) {
+    public AlunoDtoResponse(Long id, String matricula, String nome, int idade, String email, String cpf, String telefone, String sexo, double peso, double altura, double imc, String objetivo, String nomeInstrutor) {
         this.id = id;
         this.matricula = matricula;
         this.nome = nome;
@@ -29,6 +30,7 @@ public class AlunoDtoResponse {
         this.sexo = sexo;
         this.peso = peso;
         this.altura = altura;
+        this.imc = imc;
         this.objetivo = objetivo;
         this.nomeInstrutor = nomeInstrutor;
     }
