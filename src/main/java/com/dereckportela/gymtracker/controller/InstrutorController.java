@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/instrutor")
@@ -26,37 +27,52 @@ public class InstrutorController {
     }
 
     @PostMapping
-    public ResponseEntity<InstrutorDtoResponse> salvar(@RequestBody @Valid InstrutorDto dto) {
-        Instrutor instrutor = instructorService.salvar(dto);
-        InstrutorDtoResponse response = new InstrutorDtoResponse(
-                instrutor.getId(),
-                instrutor.getNome(),
-                instrutor.getIdade(),
-                instrutor.getMatricula(),
-                instrutor.getEmail(),
-                instrutor.getEspecialidade(),
-                instrutor.getSexo(),
-                instrutor.getSalario(),
-                instrutor.getAlunos());
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<?> salvar(@RequestBody @Valid InstrutorDto dto) {
+        try{
+            Instrutor instrutor = instructorService.salvar(dto);
+            InstrutorDtoResponse response = new InstrutorDtoResponse(
+                    instrutor.getId(),
+                    instrutor.getCpf(),
+                    instrutor.getNome(),
+                    instrutor.getIdade(),
+                    instrutor.getMatricula(),
+                    instrutor.getEmail(),
+                    instrutor.getEspecialidade(),
+                    instrutor.getSexo(),
+                    instrutor.getSalario(),
+                    instrutor.getAlunos());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    Map.of("mensagem", e.getMessage())
+            );
+        }
+
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InstrutorDtoResponse> atualizarInstrutor(@PathVariable Long id,
+    public ResponseEntity<?> atualizarInstrutor(@PathVariable Long id,
             @RequestBody @Valid InstrutorDto dto) {
-        Instrutor instrutor = instructorService.atualizar(id, dto);
-        InstrutorDtoResponse response = new InstrutorDtoResponse(
-                instrutor.getId(),
-                instrutor.getNome(),
-                instrutor.getIdade(),
-                instrutor.getMatricula(),
-                instrutor.getEmail(),
-                instrutor.getEspecialidade(),
-                instrutor.getSexo(),
-                instrutor.getSalario(),
-                instrutor.getAlunos());
+        try{
+            Instrutor instrutor = instructorService.atualizar(id, dto);
+            InstrutorDtoResponse response = new InstrutorDtoResponse(
+                    instrutor.getId(),
+                    instrutor.getCpf(),
+                    instrutor.getNome(),
+                    instrutor.getIdade(),
+                    instrutor.getMatricula(),
+                    instrutor.getEmail(),
+                    instrutor.getEspecialidade(),
+                    instrutor.getSexo(),
+                    instrutor.getSalario(),
+                    instrutor.getAlunos());
 
-        return ResponseEntity.ok(response);
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    Map.of("mensagem", e.getMessage())
+            );
+        }
 
     }
 

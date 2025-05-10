@@ -12,14 +12,16 @@ import java.util.List;
 @Service
 public class InstructorService {
     private final InstrutorRepository instrutorRepository;
+    private final ValidadorPessoa validadorPessoa;
 
-    public InstructorService(InstrutorRepository instrutorRepository) {
+    public InstructorService(InstrutorRepository instrutorRepository, ValidadorPessoa validadorPessoa) {
         this.instrutorRepository = instrutorRepository;
+        this.validadorPessoa = validadorPessoa;
     }
 
-    public List<InstrutorDtoResponse> listar(){
+    public List<InstrutorDtoResponse> listar() {
         List<Instrutor> instrutores = instrutorRepository.findAll();
-        return instrutores.stream().map(instrutor -> new InstrutorDtoResponse(instrutor.getId(), instrutor.getNome(), instrutor.getIdade(), instrutor.getMatricula(), instrutor.getEmail(), instrutor.getEspecialidade(), instrutor.getSexo(), instrutor.getSalario(), instrutor.getAlunos())).toList();
+        return instrutores.stream().map(instrutor -> new InstrutorDtoResponse(instrutor.getId(), instrutor.getCpf(), instrutor.getNome(), instrutor.getIdade(), instrutor.getMatricula(), instrutor.getEmail(), instrutor.getEspecialidade(), instrutor.getSexo(), instrutor.getSalario(), instrutor.getAlunos())).toList();
     }
 
     public Instrutor salvar(InstrutorDto dto) {
@@ -29,10 +31,15 @@ public class InstructorService {
         instrutor.setMatricula(dto.getMatricula());
         instrutor.setEmail(dto.getEmail());
         instrutor.setTelefone(dto.getTelefone());
-        instrutor.setCpf(dto.getCpf());
         instrutor.setSexo(dto.getSexo());
         instrutor.setSalario(dto.getSalario());
         instrutor.setEspecialidade(dto.getEspecialidade());
+        try {
+            validadorPessoa.validarCpfUnico(dto.getCpf());
+            instrutor.setCpf(dto.getCpf());
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Erro ao criar instrutor: " + e.getMessage());
+        }
 
         return instrutorRepository.save(instrutor);
     }
@@ -46,10 +53,17 @@ public class InstructorService {
         instrutor.setIdade(dto.getIdade());
         instrutor.setEmail(dto.getEmail());
         instrutor.setTelefone(dto.getTelefone());
-        instrutor.setCpf(dto.getCpf());
         instrutor.setSexo(dto.getSexo());
         instrutor.setSalario(dto.getSalario());
         instrutor.setEspecialidade(dto.getEspecialidade());
+        if (!instrutor.getCpf().equals(dto.getCpf())) {
+            try {
+                validadorPessoa.validarCpfUnico(dto.getCpf());
+                instrutor.setCpf(dto.getCpf());
+            } catch (IllegalArgumentException e) {
+                throw new RuntimeException("Erro ao criar instrutor: " + e.getMessage());
+            }
+        }
 
         return instrutorRepository.save(instrutor);
     }

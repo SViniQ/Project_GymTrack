@@ -17,10 +17,12 @@ import java.util.List;
 public class AlunoService {
     private final AlunoRepository alunoRepository;
     private final InstrutorRepository instrutorRepository;
+    private final ValidadorPessoa validadorPessoa;
 
-    public AlunoService(AlunoRepository repository, InstrutorRepository instrutorRepository) {
+    public AlunoService(AlunoRepository repository, InstrutorRepository instrutorRepository, ValidadorPessoa validadorPessoa) {
         this.alunoRepository = repository;
         this.instrutorRepository = instrutorRepository;
+        this.validadorPessoa = validadorPessoa;
     }
 
     public List<AlunoDtoResponse> listar() {
@@ -54,15 +56,20 @@ public class AlunoService {
         aluno.setEmail(dto.getEmail());
         aluno.setAltura(dto.getAltura());
         aluno.setPeso(dto.getPeso());
-        aluno.setCpf(dto.getCpf());
         aluno.setObjetivo(dto.getObjetivo());
         aluno.setIdade(dto.getIdade());
         aluno.setSexo(dto.getSexo());
         aluno.setTelefone(dto.getTelefone());
         aluno.setInstrutor(instrutor);
-        try{
+        try {
+            validadorPessoa.validarCpfUnico(dto.getCpf());
+            aluno.setCpf(dto.getCpf());
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Erro ao criar Aluno: " + e.getMessage());
+        }
+        try {
             aluno.setImc(CalculadoraIMC.calcularIMC(aluno.getPeso(), aluno.getAltura()));
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new RuntimeException("Erro ao calcular IMC: " + e.getMessage());
         }
 
@@ -80,15 +87,22 @@ public class AlunoService {
         aluno.setEmail(dto.getEmail());
         aluno.setAltura(dto.getAltura());
         aluno.setPeso(dto.getPeso());
-        aluno.setCpf(dto.getCpf());
         aluno.setObjetivo(dto.getObjetivo());
         aluno.setIdade(dto.getIdade());
         aluno.setSexo(dto.getSexo());
         aluno.setTelefone(dto.getTelefone());
         aluno.setInstrutor(instrutor);
-        try{
+        if (!dto.getCpf().equals(aluno.getCpf())) {
+            try {
+                validadorPessoa.validarCpfUnico(dto.getCpf());
+                aluno.setCpf(dto.getCpf());
+            } catch (IllegalArgumentException e) {
+                throw new RuntimeException("Erro ao criar aluno: " + e.getMessage());
+            }
+        }
+        try {
             aluno.setImc(CalculadoraIMC.calcularIMC(aluno.getPeso(), aluno.getAltura()));
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new RuntimeException("Erro ao calcular IMC: " + e.getMessage());
         }
 
