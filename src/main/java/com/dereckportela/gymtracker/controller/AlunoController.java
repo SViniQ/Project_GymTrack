@@ -51,6 +51,10 @@ public class AlunoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     Map.of("mensagem", e.getMessage())
             );
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    Map.of("mensagem", e.getMessage())
+            );
         }
 
 
@@ -82,6 +86,10 @@ public class AlunoController {
                     Map.of("mensagem", e.getMessage())
             );
 
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    Map.of("mensagem", e.getMessage())
+            );
         }
 
     }

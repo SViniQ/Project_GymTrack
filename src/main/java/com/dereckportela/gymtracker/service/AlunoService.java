@@ -7,6 +7,7 @@ import com.dereckportela.gymtracker.model.Aluno;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.AlunoRepository;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
+import com.dereckportela.gymtracker.util.CalculadoraIMC;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
@@ -59,7 +60,12 @@ public class AlunoService {
         aluno.setSexo(dto.getSexo());
         aluno.setTelefone(dto.getTelefone());
         aluno.setInstrutor(instrutor);
-        aluno.setImc(calculaIMC(aluno.getPeso(), aluno.getAltura()));
+        try{
+            aluno.setImc(CalculadoraIMC.calcularIMC(aluno.getPeso(), aluno.getAltura()));
+        }catch(IllegalArgumentException e){
+            throw new RuntimeException("Erro ao calcular IMC: " + e.getMessage());
+        }
+
         return alunoRepository.save(aluno);
     }
 
@@ -80,7 +86,11 @@ public class AlunoService {
         aluno.setSexo(dto.getSexo());
         aluno.setTelefone(dto.getTelefone());
         aluno.setInstrutor(instrutor);
-        aluno.setImc(calculaIMC(aluno.getPeso(), aluno.getAltura()));
+        try{
+            aluno.setImc(CalculadoraIMC.calcularIMC(aluno.getPeso(), aluno.getAltura()));
+        }catch(IllegalArgumentException e){
+            throw new RuntimeException("Erro ao calcular IMC: " + e.getMessage());
+        }
 
         return alunoRepository.save(aluno);
     }
@@ -91,9 +101,9 @@ public class AlunoService {
         alunoRepository.delete(aluno);
     }
 
-    private double calculaIMC(double peso, double altura){
-        double imc = peso/(altura*altura);
-
-        return Math.round(imc * 100.0) / 100.0;
-    }
+//    private double calculaIMC(double peso, double altura){
+//        double imc = peso/(altura*altura);
+//
+//        return Math.round(imc * 100.0) / 100.0;
+//    }
 }
