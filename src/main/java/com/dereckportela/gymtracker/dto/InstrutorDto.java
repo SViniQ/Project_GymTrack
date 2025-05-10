@@ -1,5 +1,6 @@
 package com.dereckportela.gymtracker.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -7,20 +8,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class InstrutorDto {
-  //  @NonNull
+    @NotBlank(message = "Matricula não pode ser vazia!")
     private  String matricula;
+    @NotBlank(message = "Nome não pode ser vazia!")
     private String nome;
     private Integer idade;
     private String especialidade;
-   // @NonNull
+    @NonNull
     private double salario;
-   // @NonNull
+    @NotBlank(message = "Email não pode ser vazio!")
     private String email;
-   // @NonNull
+    @NotBlank(message = "Telefone não pode ser vazia!")
     private String telefone;
     private String sexo;
-   // @NonNull
-    private String endereco;
-   // @NonNull
+    @NotBlank(message = "CPF não pode ser vazio!")
     private String cpf;
 }
