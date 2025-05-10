@@ -5,6 +5,7 @@ import com.dereckportela.gymtracker.exception.RecursoNaoEncontradoException;
 import com.dereckportela.gymtracker.dto.AlunoDto;
 import com.dereckportela.gymtracker.model.Aluno;
 import com.dereckportela.gymtracker.service.AlunoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class AlunoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> cadastrar(@RequestBody AlunoDto dto) {
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid AlunoDto dto) {
         try {
             Aluno aluno = alunoService.cadastrar(dto);
             AlunoDtoResponse reponse = new AlunoDtoResponse(
@@ -61,7 +62,7 @@ public class AlunoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> atualizarAluno(@PathVariable Long id, @RequestBody AlunoDto dto) {
+    public ResponseEntity<?> atualizarAluno(@PathVariable Long id, @RequestBody @Valid AlunoDto dto) {
         try {
             Aluno aluno = alunoService.atualizar(id, dto);
             AlunoDtoResponse reponse = new AlunoDtoResponse(

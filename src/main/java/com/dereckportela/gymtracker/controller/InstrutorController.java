@@ -4,6 +4,7 @@ import com.dereckportela.gymtracker.dto.InstrutorDto;
 import com.dereckportela.gymtracker.dto.InstrutorDtoResponse;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.service.InstructorService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class InstrutorController {
     }
 
     @PostMapping
-    public ResponseEntity<InstrutorDtoResponse> salvar(@RequestBody InstrutorDto dto) {
+    public ResponseEntity<InstrutorDtoResponse> salvar(@RequestBody @Valid InstrutorDto dto) {
         Instrutor instrutor = instructorService.salvar(dto);
         InstrutorDtoResponse response = new InstrutorDtoResponse(
                 instrutor.getId(),
@@ -42,7 +43,7 @@ public class InstrutorController {
 
     @PutMapping("/{id}")
     public ResponseEntity<InstrutorDtoResponse> atualizarInstrutor(@PathVariable Long id,
-            @RequestBody InstrutorDto dto) {
+            @RequestBody @Valid InstrutorDto dto) {
         Instrutor instrutor = instructorService.atualizar(id, dto);
         InstrutorDtoResponse response = new InstrutorDtoResponse(
                 instrutor.getId(),

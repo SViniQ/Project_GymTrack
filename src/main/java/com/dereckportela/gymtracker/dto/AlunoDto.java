@@ -1,22 +1,21 @@
 package com.dereckportela.gymtracker.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
 @Getter @Setter
 public class AlunoDto {
-    @NonNull
+    @NotBlank(message = "Matricula não pode ser vazia!")
     private String matricula;
-    @NonNull
+    @NotBlank(message = "Nome não pode ser vazio!")
     private String nome;
-    @NonNull
+    @NotBlank(message = "Email não pode ser vazio!")
     private String email;
-    @NonNull
+    @NotBlank(message = "Telefon não pode ser vazio!")
     private String telefone;
-    @NonNull
-    private String endereco;
-    @NonNull
+    @NotBlank(message = "CPF não pode ser vazio!")
     private String cpf;
     private String sexo;
     @NonNull
