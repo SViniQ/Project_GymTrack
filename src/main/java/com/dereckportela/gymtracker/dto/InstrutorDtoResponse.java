@@ -10,6 +10,7 @@ import java.util.List;
 @Getter @Setter
 public class InstrutorDtoResponse {
     private Long id;
+    private String cpf;
     private String nome;
     private String matricula;
     private String email;
@@ -19,8 +20,9 @@ public class InstrutorDtoResponse {
     private String especialidade;
     private List<Aluno> alunos;
 
-    public InstrutorDtoResponse(Long id, String nome, int idade, String matricula, String email, String especialidade, String sexo, double salario, List<Aluno> alunos) {
+    public InstrutorDtoResponse(Long id, String cpf, String nome, int idade, String matricula, String email, String especialidade, String sexo, double salario, List<Aluno> alunos) {
         this.id = id;
+        this.cpf = cpf;
         this.nome = nome;
         this.idade = idade;
         this.matricula = matricula;
