@@ -19,6 +19,7 @@ public class Aluno extends Pessoa{
     private double peso;
     private double altura;
     private String objetivo;
+    private double imc;
 
     @ManyToOne
     @JsonBackReference

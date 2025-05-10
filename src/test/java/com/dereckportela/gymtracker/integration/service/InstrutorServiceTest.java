@@ -3,7 +3,7 @@ package com.dereckportela.gymtracker.integration.service;
 import com.dereckportela.gymtracker.dto.InstrutorDto;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
-import com.dereckportela.gymtracker.unit.InstructorService;
+import com.dereckportela.gymtracker.service.InstructorService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

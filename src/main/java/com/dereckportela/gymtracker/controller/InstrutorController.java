@@ -3,7 +3,7 @@ package com.dereckportela.gymtracker.controller;
 import com.dereckportela.gymtracker.dto.InstrutorDto;
 import com.dereckportela.gymtracker.dto.InstrutorDtoResponse;
 import com.dereckportela.gymtracker.model.Instrutor;
-import com.dereckportela.gymtracker.unit.InstructorService;
+import com.dereckportela.gymtracker.service.InstructorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -4,9 +4,7 @@ import com.dereckportela.gymtracker.dto.AlunoDtoResponse;
 import com.dereckportela.gymtracker.exception.RecursoNaoEncontradoException;
 import com.dereckportela.gymtracker.dto.AlunoDto;
 import com.dereckportela.gymtracker.model.Aluno;
-import com.dereckportela.gymtracker.repository.AlunoRepository;
-import com.dereckportela.gymtracker.repository.InstrutorRepository;
-import com.dereckportela.gymtracker.unit.AlunoService;
+import com.dereckportela.gymtracker.service.AlunoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,11 +42,16 @@ public class AlunoController {
                     aluno.getSexo(),
                     aluno.getPeso(),
                     aluno.getAltura(),
+                    aluno.getImc(),
                     aluno.getObjetivo(),
                     aluno.getInstrutor().getNome()
             );
             return ResponseEntity.status(HttpStatus.CREATED).body(reponse);
         } catch (RecursoNaoEncontradoException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    Map.of("mensagem", e.getMessage())
+            );
+        } catch (RuntimeException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                     Map.of("mensagem", e.getMessage())
             );
@@ -72,6 +75,7 @@ public class AlunoController {
                     aluno.getSexo(),
                     aluno.getPeso(),
                     aluno.getAltura(),
+                    aluno.getImc(),
                     aluno.getObjetivo(),
                     aluno.getInstrutor().getNome()
             );
@@ -82,6 +86,10 @@ public class AlunoController {
                     Map.of("mensagem", e.getMessage())
             );
 
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    Map.of("mensagem", e.getMessage())
+            );
         }
 
     }

@@ -1,4 +1,4 @@
-package com.dereckportela.gymtracker.unit;
+package com.dereckportela.gymtracker.service;
 
 import com.dereckportela.gymtracker.dto.AlunoDto;
 import com.dereckportela.gymtracker.dto.AlunoDtoResponse;
@@ -7,8 +7,10 @@ import com.dereckportela.gymtracker.model.Aluno;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.AlunoRepository;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
+import com.dereckportela.gymtracker.util.CalculadoraIMC;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Service
@@ -35,6 +37,7 @@ public class AlunoService {
                         aluno.getSexo(),
                         aluno.getPeso(),
                         aluno.getAltura(),
+                        aluno.getImc(),
                         aluno.getObjetivo(),
                         aluno.getInstrutor() != null ? aluno.getInstrutor().getNome() : "Sem Instrutor"
                 ))
@@ -57,6 +60,12 @@ public class AlunoService {
         aluno.setSexo(dto.getSexo());
         aluno.setTelefone(dto.getTelefone());
         aluno.setInstrutor(instrutor);
+        try{
+            aluno.setImc(CalculadoraIMC.calcularIMC(aluno.getPeso(), aluno.getAltura()));
+        }catch(IllegalArgumentException e){
+            throw new RuntimeException("Erro ao calcular IMC: " + e.getMessage());
+        }
+
         return alunoRepository.save(aluno);
     }
 
@@ -77,6 +86,11 @@ public class AlunoService {
         aluno.setSexo(dto.getSexo());
         aluno.setTelefone(dto.getTelefone());
         aluno.setInstrutor(instrutor);
+        try{
+            aluno.setImc(CalculadoraIMC.calcularIMC(aluno.getPeso(), aluno.getAltura()));
+        }catch(IllegalArgumentException e){
+            throw new RuntimeException("Erro ao calcular IMC: " + e.getMessage());
+        }
 
         return alunoRepository.save(aluno);
     }
@@ -86,4 +100,10 @@ public class AlunoService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Aluno não encontrado"));
         alunoRepository.delete(aluno);
     }
+
+//    private double calculaIMC(double peso, double altura){
+//        double imc = peso/(altura*altura);
+//
+//        return Math.round(imc * 100.0) / 100.0;
+//    }
 }
