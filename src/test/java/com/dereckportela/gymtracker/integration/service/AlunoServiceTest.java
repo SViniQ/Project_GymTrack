@@ -1,13 +1,11 @@
 package com.dereckportela.gymtracker.integration.service;
 
 import com.dereckportela.gymtracker.dto.AlunoDto;
-import com.dereckportela.gymtracker.dto.InstrutorDto;
 import com.dereckportela.gymtracker.model.Aluno;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.AlunoRepository;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
 import com.dereckportela.gymtracker.service.AlunoService;
-import com.dereckportela.gymtracker.service.InstructorService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,12 +33,8 @@ public class AlunoServiceTest {
     @Autowired
     private AlunoService alunoService;
     @Autowired
-    private InstructorService instructorService;
-    private InstrutorDto instrutorDto;
     private Instrutor instrutor;
     private AlunoDto alunoDto;
-    private Aluno aluno;
-
     @BeforeEach
     public void setUp() {
         instrutor = new Instrutor();

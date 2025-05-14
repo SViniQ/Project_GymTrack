@@ -11,7 +11,6 @@ import com.dereckportela.gymtracker.util.CalculadoraIMC;
 import com.dereckportela.gymtracker.util.GeradorMatricula;
 import org.springframework.stereotype.Service;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 @Service

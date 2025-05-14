@@ -16,9 +16,7 @@ public class AlunoDto {
     @NotBlank(message = "CPF não pode ser vazio!")
     private String cpf;
     private String sexo;
-    @NonNull
     private double peso;
-    @NonNull
     private double altura;
     private int idade;
     private String objetivo;
