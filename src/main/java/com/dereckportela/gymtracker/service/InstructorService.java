@@ -5,6 +5,7 @@ import com.dereckportela.gymtracker.dto.InstrutorDtoResponse;
 import com.dereckportela.gymtracker.exception.RecursoNaoEncontradoException;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
+import com.dereckportela.gymtracker.util.GeradorMatricula;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 public class InstructorService {
     private final InstrutorRepository instrutorRepository;
     private final ValidadorPessoa validadorPessoa;
+    private String matricula;
 
     public InstructorService(InstrutorRepository instrutorRepository, ValidadorPessoa validadorPessoa) {
         this.instrutorRepository = instrutorRepository;
@@ -26,9 +28,11 @@ public class InstructorService {
 
     public Instrutor salvar(InstrutorDto dto) {
         Instrutor instrutor = new Instrutor();
+        matricula = GeradorMatricula.gerarMatricula();
+
         instrutor.setNome(dto.getNome());
+        instrutor.setMatricula(matricula);
         instrutor.setIdade(dto.getIdade());
-        instrutor.setMatricula(dto.getMatricula());
         instrutor.setEmail(dto.getEmail());
         instrutor.setTelefone(dto.getTelefone());
         instrutor.setSexo(dto.getSexo());
@@ -49,7 +53,7 @@ public class InstructorService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
 
         instrutor.setNome(dto.getNome());
-        instrutor.setMatricula(dto.getMatricula());
+        instrutor.setMatricula(matricula);
         instrutor.setIdade(dto.getIdade());
         instrutor.setEmail(dto.getEmail());
         instrutor.setTelefone(dto.getTelefone());

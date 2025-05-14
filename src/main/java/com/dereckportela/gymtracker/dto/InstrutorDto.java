@@ -8,8 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class InstrutorDto {
-    @NotBlank(message = "Matricula não pode ser vazia!")
-    private  String matricula;
     @NotBlank(message = "Nome não pode ser vazia!")
     private String nome;
     private Integer idade;

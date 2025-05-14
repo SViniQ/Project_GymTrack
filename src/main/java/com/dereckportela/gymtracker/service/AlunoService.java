@@ -8,6 +8,7 @@ import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.AlunoRepository;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
 import com.dereckportela.gymtracker.util.CalculadoraIMC;
+import com.dereckportela.gymtracker.util.GeradorMatricula;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
@@ -18,6 +19,7 @@ public class AlunoService {
     private final AlunoRepository alunoRepository;
     private final InstrutorRepository instrutorRepository;
     private final ValidadorPessoa validadorPessoa;
+    private String matricula;
 
     public AlunoService(AlunoRepository repository, InstrutorRepository instrutorRepository, ValidadorPessoa validadorPessoa) {
         this.alunoRepository = repository;
@@ -51,7 +53,8 @@ public class AlunoService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
 
         Aluno aluno = new Aluno();
-        aluno.setMatricula(dto.getMatricula());
+        matricula = GeradorMatricula.gerarMatricula();
+        aluno.setMatricula(matricula);
         aluno.setNome(dto.getNome());
         aluno.setEmail(dto.getEmail());
         aluno.setAltura(dto.getAltura());
@@ -83,7 +86,7 @@ public class AlunoService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Instrutor nao encontrado"));
 
         aluno.setNome(dto.getNome());
-        aluno.setMatricula(dto.getMatricula());
+        aluno.setMatricula(matricula);
         aluno.setEmail(dto.getEmail());
         aluno.setAltura(dto.getAltura());
         aluno.setPeso(dto.getPeso());
@@ -115,9 +118,4 @@ public class AlunoService {
         alunoRepository.delete(aluno);
     }
 
-//    private double calculaIMC(double peso, double altura){
-//        double imc = peso/(altura*altura);
-//
-//        return Math.round(imc * 100.0) / 100.0;
-//    }
 }
