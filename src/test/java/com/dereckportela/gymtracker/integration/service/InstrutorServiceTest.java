@@ -34,7 +34,6 @@ public class InstrutorServiceTest {
     @Test
     void deveSalvarInstrutorNoBanco(){
         instrutorDto = new InstrutorDto();
-        instrutorDto.setMatricula("1234");
         instrutorDto.setNome("Carlos");
         instrutorDto.setIdade(40);
         instrutorDto.setEspecialidade("Crossfit");
@@ -42,7 +41,6 @@ public class InstrutorServiceTest {
         instrutorDto.setEmail("carlos@academia.com");
         instrutorDto.setTelefone("99999-8888");
         instrutorDto.setSexo("M");
-        instrutorDto.setEndereco("Rua da Academia");
         instrutorDto.setCpf("11122233344");
 
         instrutor = instructorService.salvar(instrutorDto);

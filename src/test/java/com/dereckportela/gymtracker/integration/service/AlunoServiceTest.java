@@ -61,11 +61,10 @@ public class AlunoServiceTest {
     @Test
     void deveSalvarAlunoNoBanco(){
         alunoDto = new AlunoDto();
-        alunoDto.setMatricula("A123");
         alunoDto.setNome("João");
         alunoDto.setEmail("joao@exemplo.com");
         alunoDto.setTelefone("99999-0000");
-        alunoDto.setCpf("12345678900");
+        alunoDto.setCpf("12345678901");
         alunoDto.setSexo("M");
         alunoDto.setPeso(75.0);
         alunoDto.setAltura(1.80);

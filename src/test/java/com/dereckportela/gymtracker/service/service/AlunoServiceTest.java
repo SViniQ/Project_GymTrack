@@ -9,6 +9,7 @@ import com.dereckportela.gymtracker.repository.AlunoRepository;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
 
 import com.dereckportela.gymtracker.service.AlunoService;
+import com.dereckportela.gymtracker.util.GeradorMatricula;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,11 +41,9 @@ class AlunoServiceTest {
     @BeforeEach
     void setUp() {
         alunoDto = new AlunoDto();
-        alunoDto.setMatricula("A123");
         alunoDto.setNome("Carlos");
         alunoDto.setEmail("carlos@example.com");
         alunoDto.setTelefone("11999999999");
-        alunoDto.setEndereco("Rua Exemplo, 123");
         alunoDto.setCpf("12345678901");
         alunoDto.setSexo("M");
         alunoDto.setPeso(75.5);
@@ -59,7 +58,7 @@ class AlunoServiceTest {
 
         aluno = new Aluno();
         aluno.setId(1L);
-        aluno.setMatricula(alunoDto.getMatricula());
+        aluno.setMatricula(GeradorMatricula.gerarMatricula());
         aluno.setNome(alunoDto.getNome());
         aluno.setEmail(alunoDto.getEmail());
         aluno.setTelefone(alunoDto.getTelefone());

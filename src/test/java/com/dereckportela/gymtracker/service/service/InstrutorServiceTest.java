@@ -6,6 +6,8 @@ import com.dereckportela.gymtracker.model.Aluno;
 import com.dereckportela.gymtracker.model.Instrutor;
 import com.dereckportela.gymtracker.repository.InstrutorRepository;
 import com.dereckportela.gymtracker.service.InstructorService;
+import com.dereckportela.gymtracker.service.ValidadorPessoa;
+import com.dereckportela.gymtracker.util.GeradorMatricula;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,25 +33,25 @@ class InstrutorServiceTest {
     private InstructorService instrutorService;
     private Instrutor instrutor;
     private InstrutorDto dto;
+    @Mock
+    private ValidadorPessoa validadorPessoa;
 
     @BeforeEach
     void setUp() {
         dto = new InstrutorDto();
         dto.setNome("João");
-        dto.setMatricula("1234");
         dto.setEmail("joao@exemplo.com");
         dto.setCpf("12345678900");
         dto.setTelefone("123456789");
         dto.setSexo("M");
         dto.setSalario(3000.0);
         dto.setEspecialidade("Musculação");
-        dto.setEndereco("Rua do Sul");
         dto.setIdade(31);
 
         instrutor = new Instrutor();
         instrutor.setId(1L);
         instrutor.setNome(dto.getNome());
-        instrutor.setMatricula(dto.getMatricula());
+        instrutor.setMatricula(GeradorMatricula.gerarMatricula());
         instrutor.setEmail(dto.getEmail());
         instrutor.setCpf(dto.getCpf());
         instrutor.setTelefone(dto.getTelefone());
@@ -75,6 +77,7 @@ class InstrutorServiceTest {
     void verificaCadastroInstrutores() {
 
         when(instrutorRepository.save(any(Instrutor.class))).thenReturn(instrutor);
+        doNothing().when(validadorPessoa).validarCpfUnico(anyString());
 
         Instrutor resultado = instrutorService.salvar(dto);
 
