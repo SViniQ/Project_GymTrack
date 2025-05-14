@@ -1,7 +1,6 @@
 package com.dereckportela.gymtracker.dto;
 
 import com.dereckportela.gymtracker.model.Aluno;
-import com.dereckportela.gymtracker.model.Instrutor;
 import lombok.Getter;
 import lombok.Setter;
 
