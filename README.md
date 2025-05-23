@@ -38,7 +38,7 @@ Print da aba de issues do GitHub:
 - Jira (Gestão de histórias)
 - Framework SpringBoot
 
-## 👥 Equip
+## 👥 Equipe
 
 - Vinícius Queiroz - [Link do LinkedIn](https://www.linkedin.com/in/viníciussilvaqueiroz/)
 - Guilherme Nogueira - [Link do LinkedIn](https://www.linkedin.com/in/guilherme-wolf/)
