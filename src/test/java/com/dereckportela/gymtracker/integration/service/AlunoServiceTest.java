@@ -32,7 +32,6 @@ public class AlunoServiceTest {
     private InstrutorRepository instrutorRepository;
     @Autowired
     private AlunoService alunoService;
-    @Autowired
     private Instrutor instrutor;
     private AlunoDto alunoDto;
     @BeforeEach
