@@ -24,7 +24,7 @@ Protótipo de baixa fidelidade criado no Figma:
 ## 📽️ Screencast do Sistema em Execução e Atualizado
 🔗 [YouTube – Demonstração do Sistema Atualizado e Testes Automatizados](https://www.youtube.com/watch?v=pdWdF295ZJI)
 
-## 🐞 Issue/Bug Tracker
+## 🐞 Issue/Bug Track
 Print da aba de issues do GitHub:  
 ![Print das Issues](./images/issue_bug_tracker.jpg)
 
