@@ -19,7 +19,7 @@ Protótipo de baixa fidelidade criado no Figma:
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" width="20"/> [Figma Design](https://www.figma.com/design/P3UNY8tWPJj7FW43XrU9ZE/Untitled?node-id=0-1&t=b3ow5hTyewWG7oIH-1)
 
 ## 🧠 Diagrama de Classes
-![Diagrama de Classe](./images/att_diagrama_de_classes)
+![Diagrama de Classe](./images/att_diagrama_de_classes.jpg)
 
 ## 📽️ Screencast do Sistema em Execução e Atualizado
 🔗 [YouTube – Demonstração Final do Sistema Atualizado](https://youtu.be/498tf5N0Fi4)
